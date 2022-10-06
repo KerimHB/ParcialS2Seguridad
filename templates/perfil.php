@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Perfil</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+        <nav class="navbar bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white"><b>DarkBook</b></a>
+
+                <a href="/logout"><input class="btn btn-outline-info" type="submit" name="logout" value="Cerrar sesión" /></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="row back">
+                <div class="col-md-2">
+                    <br><br><br><br>
+                    <img src="/static/img/{{ g.usuario.img }}" width="200px" height="200px">
+                </div>
+                <div class="col-md-10">
+                    <br><br><br><br><br><br><br><br><br>
+                    <h1><b class="text-white">{{ g.usuario.nombre }} {{ g.usuario.apellido }}</b></h1>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-sm-6 text-center border border-3">
+                    <h2><b>Edad</b></h2>
+                    <h4>{{ g.usuario.edad }}</h4>
+                </div>
+                <div class="col-sm-6 text-center border border-3">
+                    <h2><b>Descripción</b></h2>
+                    <h4>{{ g.usuario.descripcion }}</h4>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
