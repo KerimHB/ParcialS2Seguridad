@@ -1,4 +1,3 @@
-import os
 from time import time
 import random
 import json
@@ -11,6 +10,7 @@ from flask_dance.contrib.github import make_github_blueprint, github
 
 app = Flask(__name__)
 app.secret_key = '123456'
+
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 github_blueprint = make_github_blueprint(client_id='e3c36a4f783d3677cdea', client_secret='2cccbc7b39ad16110c5609f66f36f15421746d53')
 app.register_blueprint(github_blueprint, url_prefix='/github')
@@ -53,6 +53,12 @@ def github_login():
     return '<h1>Datos erroneos</h1><br><a href="/">Regresar</a>'
 
 
+@app.route('/data', methods=["POST", "GET"])
+def data():
+    data = [time() * 1000, random() * 100]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    return response
 
 @app.route('/perfil', methods=["POST", "GET"])
 def perfil():
