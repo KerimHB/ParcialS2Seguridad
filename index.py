@@ -1,10 +1,19 @@
-from flask import Flask, render_template, request, session, redirect, url_for, g
+import os
+from time import time
+import random
+import json
+import os
+from flask import Flask, render_template, make_response, request, session, redirect, url_for, g
 from usuarios import usuarios
+from flask_dance.contrib.github import make_github_blueprint, github
+
 
 
 app = Flask(__name__)
 app.secret_key = '123456'
-
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+github_blueprint = make_github_blueprint(client_id='e3c36a4f783d3677cdea', client_secret='2cccbc7b39ad16110c5609f66f36f15421746d53')
+app.register_blueprint(github_blueprint, url_prefix='/github')
 
 @app.before_request
 def before_request():
@@ -32,11 +41,28 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/github')
+def github_login():
+    if not github.authorized:
+        return redirect(url_for('github.login'))
+    else:
+        account_info = github.get('/user')
+        if account_info.ok:
+            account_info_json = account_info.json()
+            return redirect(url_for('gitperfil'))
+    return '<h1>Datos erroneos</h1><br><a href="/">Regresar</a>'
+
+
+
 @app.route('/perfil', methods=["POST", "GET"])
 def perfil():
     if g.usuario == None:
         return redirect(url_for('login'))
     return render_template('perfil.html')
+
+@app.route('/gitperfil', methods=["POST", "GET"])
+def gitperfil():
+    return render_template('gitperfil.html')
 
 
 @app.route('/logout')
