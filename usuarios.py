@@ -23,15 +23,3 @@ usuarios.append(Usuario(id=7, username='MC81', password='258369', nombre='Monica
 usuarios.append(Usuario(id=8, username='CM32', password='963852', nombre='Carlos', apellido='Mendez', edad=35, descripcion='Policia', img='policia.jpg'))
 usuarios.append(Usuario(id=9, username='RM78', password='159236', nombre='Roxana', apellido='Moran', edad=25, descripcion='Modelo', img='modelo.jpg'))
 usuarios.append(Usuario(id=10, username='SC77', password='159478', nombre='Sofia', apellido='Castro', edad=28, descripcion='Secretaria', img='secretaria.jpg'))
-
-
-##github users
-
-class gitUser:
-    def __init__(self, name, edad, descrip):
-        self.name = name
-        self.edad = edad
-        self.descrip = descrip
-    
-    def __repr__(self) -> str:
-        return f'<gitUser:{self.name}>'

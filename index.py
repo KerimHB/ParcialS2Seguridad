@@ -7,7 +7,6 @@ from usuarios import usuarios
 from flask_dance.contrib.github import make_github_blueprint, github
 
 
-
 app = Flask(__name__)
 app.secret_key = '123456'
 
@@ -35,9 +34,9 @@ def login():
             if usuario and usuario.password == password:
                 session['usuario_id'] = usuario.id
                 return redirect(url_for('perfil'))
-            return redirect(url_for('login'))
+            ##return redirect(url_for('login'))
         except:
-            print ('Usuario no existe')
+            return '<h1>Datos erroneos</h1><br><a href="/">Regresar</a>'
     return render_template('login.html')
 
 
@@ -49,6 +48,9 @@ def github_login():
         account_info = github.get('/user')
         if account_info.ok:
             account_info_json = account_info.json()
+            nombre = format(account_info_json['login'])
+            edad = random.randint(20,45)
+            ##return '<h1>Bienvenido: '+ nombre + '<br>Edad: ' + str(edad) + '<br>Descripción: ' + 'Desarrollador'
             return redirect(url_for('gitperfil'))
     return '<h1>Datos erroneos</h1><br><a href="/">Regresar</a>'
 
@@ -69,6 +71,18 @@ def perfil():
 @app.route('/gitperfil', methods=["POST", "GET"])
 def gitperfil():
     return render_template('gitperfil.html')
+
+
+@app.route('/tokenperfil', methods=["POST", "GET"])
+def tokenperfil():
+    return render_template('tokenperfil.html')
+
+
+
+@app.route('/logintoken', methods=["POST", "GET"])
+def loginToken():
+    
+    return render_template('logintoken.html')
 
 
 @app.route('/logout')
