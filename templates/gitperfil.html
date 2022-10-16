@@ -3,51 +3,76 @@
 
 <head>
     <title>Perfil</title>
+    <link rel="shortcut icon" href="/static/img/icono.jpg">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/profile.css" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 </head>
 
-<body>
+<body class="color">
     <header>
         <!-- place navbar here -->
         <nav class="navbar bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand text-white"><b>DarkBook</b></a>
 
-                <a href="/logout"><input class="btn btn-outline-info" type="submit" name="logout" value="Cerrar sesión" /></a>
+                <a href="/logout"><input class="btn btn-outline-light" type="submit" name="logout"  value="Cerrar sesión" /></a>
             </div>
         </nav>
     </header>
     <main>
-        <div class="container-fluid">
+        <div class="padding">
+            <div class="col-md-10">
+                <!-- Column -->
+                <div class="card"> <img class="card-img-top" src="/static/img/back.jpg" alt="Card image cap">
+                    <div class="card-body little-profile text-center">
+                        <div class="pro-img"><img src="/static/img/hacker.jpg" alt="user"></div>
+                        <h3 class="m-b-0">KerimHB</h3>
+                        <!--<p>Web Designer &amp; Developer</p> <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Follow</a>-->
+                        <br>
+                        <div class="row text-center m-t-20">
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h3 class="m-b-0 font-light">23</h3><small>Edad</small>
+                            </div>
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h3 class="m-b-0 font-light">Estudiante/Desarrollador</h3><small>Descripción</small>
+                            </div>
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h3 class="m-b-0 font-light">??</h3><small>Followers</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <!-- <div class="container-fluid">
             <div class="row back">
                 <div class="col-md-2">
                     <br><br><br><br>
-                    <img src="/static/img/hacker.jpg" width="200px" height="200px">
+                    <img src="/static/img/{{ g.usuario.img }}" width="200px" height="200px">
                 </div>
                 <div class="col-md-10">
                     <br><br><br><br><br><br><br><br><br>
-                    <h1><b class="text-white">Usuario de GitHub</b></h1>
+                    <h1><b class="text-white">{{ g.usuario.nombre }} {{ g.usuario.apellido }}</b></h1>
                 </div>
             </div>
             <div class="row ">
                 <div class="col-sm-6 text-center border border-3">
                     <h2><b>Edad</b></h2>
-                    <h4>25</h4>
+                    <h4>{{ g.usuario.edad }}</h4>
                 </div>
                 <div class="col-sm-6 text-center border border-3">
                     <h2><b>Descripción</b></h2>
-                    <h4>Desarrollador</h4>
+                    <h4>{{ g.usuario.descripcion }}</h4>
                 </div>
             </div>
-        </div>
+        </div>-->
     </main>
     <footer>
         <!-- place footer here -->

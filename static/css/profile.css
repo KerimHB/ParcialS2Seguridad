@@ -2,6 +2,10 @@ body {
     background-color: #000000
 }
 
+.color{
+    background-color: #d8d8d8;
+}
+
 .padding {
     padding: 3rem !important;
     margin-left: 200px

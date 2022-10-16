@@ -3,6 +3,7 @@ import random
 import json
 import os
 from flask import Flask, render_template, make_response, request, session, redirect, url_for, g
+from tokenacceso import Verify
 from usuarios import usuarios
 from flask_dance.contrib.github import make_github_blueprint, github
 
@@ -79,10 +80,43 @@ def tokenperfil():
 
 
 
-@app.route('/logintoken', methods=["POST", "GET"])
+@app.route('/loginToken', methods=["POST", "GET"])
 def loginToken():
+    if request.method=='POST':
+        session.pop('usuario_id', None)
+        session.pop('otp', None)
+        session.pop('email', None)
+        correo=request.form['emailT']
+        try:
+            usuario=[x for x in usuarios if x.email==correo][0]
+            if usuario:
+                session['email']=correo
+                session['otp'] = random.randint(1000, 10000)
+                Verify(correo, session['otp'])
+                return redirect(url_for('VerToken'))
+        except:
+            g.err='El correo introducido no esta registrado!!!'
     
     return render_template('logintoken.html')
+
+
+
+@app.route('/VerToken', methods=['GET', 'POST'])
+def VerToken():
+    if request.method=='POST':
+        token=request.form['verToken']
+        otpT=session['otp']
+        email=session['email']
+
+        if str(token)==str(otpT):
+            usuario=[x for x in usuarios if x.email==email][0]
+            if usuario and usuario.email==email:
+                session['usuario_id']=usuario.id
+                return redirect(url_for('perfil'))
+        else:
+            g.errCod='El codigo no es valido'
+
+    return render_template('verificarToken.html')
 
 
 @app.route('/logout')
